@@ -21,7 +21,7 @@ from core.api.viewsets import PontoTuristicoViewSet
 from atracoes.api.viewsets import AtracoesViewSet
 
 router = routers.DefaultRouter()
-router.register(r'pontoturistico', PontoTuristicoViewSet)
+router.register(r'pontoturistico', PontoTuristicoViewSet, basename ='PontoTuristico')
 router.register(r'atracoes', AtracoesViewSet)
 
 urlpatterns = [
