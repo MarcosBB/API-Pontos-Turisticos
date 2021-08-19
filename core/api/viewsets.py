@@ -1,14 +1,18 @@
-from rest_framework.viewsets import ModelViewSet
-from rest_framework.filters import SearchFilter
 from core.models import PontoTuristico
+from rest_framework.filters import SearchFilter
+from rest_framework.viewsets import ModelViewSet
 from .serializers import PontoTuristicoSerializer
-
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import TokenAuthentication
 
 class PontoTuristicoViewSet(ModelViewSet):
     serializer_class = PontoTuristicoSerializer
 
     filter_backends = (SearchFilter,)
     search_fields = ('nome', 'descricao', 'endereco__linha1')
+
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
 
     def get_queryset(self):
         id= self.request.query_params.get('id', None)
